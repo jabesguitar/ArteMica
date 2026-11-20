@@ -1,0 +1,125 @@
+name: Build ArteMica APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "index.html"
+      - "app.js"
+      - "manifest.webmanifest"
+      - "sw.js"
+      - "assets/**"
+      - ".github/workflows/build-android-apk.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build-android:
+    name: Compile ArteMica Android APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v4
+
+      - name: Configure Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Configure Java for Android
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Configure Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android 17 SDK platform
+        run: sdkmanager "platforms;android-37" "build-tools;37.0.0" "platform-tools"
+
+      - name: Update npm for Capacitor tooling
+        run: npm install --global npm@latest
+
+      - name: Prepare local web application
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f index.html
+          test -f app.js
+          test -f manifest.webmanifest
+          test -f sw.js
+          test -f assets/artemica-icon-1024.png
+
+          mkdir -p www
+          cp index.html app.js manifest.webmanifest sw.js www/
+          cp -R assets www/assets
+
+          cat > package.json <<'JSON'
+          {
+            "name": "artemica-android",
+            "version": "1.0.0",
+            "private": true,
+            "description": "ArteMica - Laboratório de Arte para o 6º ano"
+          }
+          JSON
+
+          cat > capacitor.config.json <<'JSON'
+          {
+            "appId": "br.com.jabesguitar.artemica",
+            "appName": "ArteMica",
+            "webDir": "www",
+            "bundledWebRuntime": false,
+            "server": {
+              "androidScheme": "https"
+            }
+          }
+          JSON
+
+          cp assets/artemica-icon-1024.png assets/icon.png
+
+      - name: Install Capacitor Android tools
+        run: |
+          npm install --no-audit --no-fund @capacitor/core@^9 @capacitor/android@^9
+          npm install --save-dev --no-audit --no-fund @capacitor/cli@^9 @capacitor/assets@^4
+
+      - name: Create Android project
+        run: npx cap add android
+
+      - name: Generate ArteMica app icon
+        run: |
+          npx capacitor-assets generate --android \
+            --iconBackgroundColor "#382447" \
+            --splashBackgroundColor "#F5F0E7"
+
+      - name: Copy web app into Android project
+        run: npx cap sync android
+
+      - name: Build debug APK
+        shell: bash
+        working-directory: android
+        run: |
+          set -euo pipefail
+          chmod +x ./gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Verify APK file
+        shell: bash
+        run: |
+          APK="android/app/build/outputs/apk/debug/app-debug.apk"
+          test -s "$APK"
+          ls -lh "$APK"
+
+      - name: Publish APK as downloadable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ArteMica-APK-Android
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
