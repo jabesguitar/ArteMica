@@ -20,7 +20,7 @@ jobs:
   build-android:
     name: Compile ArteMica Android APK
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
 
     steps:
       - name: Download repository
@@ -38,13 +38,13 @@ jobs:
           java-version: "21"
 
       - name: Configure Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: "platform-tools"
 
-      - name: Install Android 17 SDK platform
-        run: sdkmanager "platforms;android-37" "build-tools;37.0.0" "platform-tools"
-
-      - name: Update npm for Capacitor tooling
-        run: npm install --global npm@latest
+      - name: Install Android 16 SDK packages
+        run: |
+          sdkmanager "platforms;android-36" "build-tools;36.0.0" "platform-tools"
 
       - name: Prepare local web application
         shell: bash
@@ -84,15 +84,19 @@ jobs:
 
           cp assets/artemica-icon-1024.png assets/icon.png
 
-      - name: Install Capacitor Android tools
+      - name: Install stable Capacitor dependencies
         run: |
-          npm install --no-audit --no-fund @capacitor/core@^9 @capacitor/android@^9
-          npm install --save-dev --no-audit --no-fund @capacitor/cli@^9 @capacitor/assets@^4
+          npm install --no-audit --no-fund \
+            @capacitor/core@8.6.2 \
+            @capacitor/android@8.6.2
+          npm install --save-dev --no-audit --no-fund \
+            @capacitor/cli@8.6.2 \
+            @capacitor/assets@4.0.0
 
       - name: Create Android project
         run: npx cap add android
 
-      - name: Generate ArteMica app icon
+      - name: Generate ArteMica Android icon and splash screen
         run: |
           npx capacitor-assets generate --android \
             --iconBackgroundColor "#382447" \
@@ -122,4 +126,3 @@ jobs:
           name: ArteMica-APK-Android
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
-          retention-days: 30
