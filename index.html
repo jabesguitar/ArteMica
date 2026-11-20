@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17152a">
+<meta name="description" content="ArteMica — laboratório de arte e cultura popular para o 6º ano.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon-192.png">
+<title>ArteMica — Laboratório de Arte</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
+:root{--ink:#211b32;--paper:#f5f0e7;--cream:#fffaf1;--violet:#6a4b83;--plum:#382447;--coral:#dc765e;--gold:#d5ae67;--teal:#477d78;--muted:#786f7b;--line:#e3d8ca;--shadow:0 18px 55px #24142a16}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
+button{font:inherit;cursor:pointer;border:0}.shell{max-width:1180px;margin:auto;padding:0 24px}
+.topbar{height:74px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ded3c6}
+.brand{display:flex;gap:12px;align-items:center;font-weight:800;letter-spacing:.13em;color:var(--plum)}
+.mark{width:42px;height:42px;border-radius:14px;background:var(--plum);display:grid;place-items:center;color:var(--gold);font-family:Fraunces;font-size:28px;box-shadow:0 6px 18px #38244733}
+.topnav{display:flex;gap:8px}.ghost{background:transparent;padding:10px 14px;border-radius:999px;color:var(--muted);font-weight:700}.ghost:hover{background:#e9dfd3;color:var(--plum)}
+.hero{position:relative;overflow:hidden;border-radius:30px;background:var(--plum);color:#fff9ef;margin:28px 0 26px;padding:46px 48px;min-height:310px;box-shadow:var(--shadow)}
+.hero:before{content:"";position:absolute;right:-80px;top:-160px;width:470px;height:470px;border:1px solid #ffffff20;border-radius:50%;box-shadow:0 0 0 34px #ffffff08,0 0 0 70px #ffffff06,0 0 0 108px #ffffff05}
+.hero:after{content:"✳";position:absolute;right:105px;top:30px;font-size:190px;color:#d5ae671c;transform:rotate(-12deg)}
+.eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:11px;font-weight:800;color:var(--gold)}
+h1,h2,h3{font-family:Fraunces,serif;font-weight:600;margin:0;line-height:1.06}
+.hero h1{font-size:clamp(42px,6vw,68px);max-width:650px;margin:14px 0}
+.hero p{color:#e8dce7;max-width:540px;line-height:1.7;font-size:15px}
+.hero .stamp{position:absolute;right:42px;bottom:32px;z-index:1;border:1px solid #d5ae6780;color:#e7c98c;padding:11px 15px;border-radius:10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;transform:rotate(-5deg)}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin:36px 0 16px;gap:18px}
+.section-head h2{font-size:32px}.section-head p{color:var(--muted);font-size:13px;margin:8px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--cream);border:1px solid var(--line);border-radius:22px;padding:23px;box-shadow:0 7px 22px #29192a08;transition:.2s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card .symbol{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:23px;margin-bottom:18px;background:#eee5ef;color:var(--violet)}
+.card:nth-child(2) .symbol{background:#f7e6dc;color:#a7503f}.card:nth-child(3) .symbol{background:#e2eeea;color:#356b64}
+.card h3{font-size:23px;margin-bottom:8px}.card p{font-size:13px;color:var(--muted);line-height:1.6;min-height:42px}
+.action{background:var(--plum);color:#fff8ec;border-radius:999px;padding:12px 18px;font-weight:800;font-size:12px;letter-spacing:.04em}
+.action:hover{background:#563563}.action.secondary{background:#eee5ef;color:var(--plum)}.action.coral{background:var(--coral)}.action:disabled{opacity:.45;cursor:not-allowed}
+.feature-row{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin:18px 0 42px}
+.note{background:#e9dfd0;border-radius:22px;padding:24px}.note h3{font-size:24px;margin-bottom:10px}.note p{font-size:13px;line-height:1.7;color:#625868}
+.note-dark{background:#477d78;color:#fff;border-radius:22px;padding:24px}.note-dark p{color:#e4f1ed}
+.screen{display:none;padding:34px 0 70px}.screen.active{display:block}
+.back{background:transparent;color:var(--muted);font-weight:700;padding:7px 0 18px}
+.panel{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.lesson p{line-height:1.8;color:#514958}.lesson h3{margin:24px 0 8px;font-size:24px}
+.lesson ul{line-height:1.8;color:#514958;padding-left:22px}
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.page-image{width:100%;height:260px;object-fit:contain;background:#eee8e1;border-radius:14px;border:1px solid var(--line);cursor:zoom-in}
+.figcap{font-size:11px;color:var(--muted);margin-top:7px}
+.quiz-layout{display:grid;grid-template-columns:1fr 280px;gap:18px}
+.kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--violet);font-weight:800}
+.question{font-family:Fraunces,serif;font-size:clamp(25px,4vw,38px);line-height:1.2;margin:16px 0 25px}
+.answers{display:grid;gap:10px}.answer{background:#f6f0e8;border:1px solid var(--line);border-radius:14px;padding:15px 17px;text-align:left;color:var(--ink);font-weight:700}
+.answer:hover{border-color:var(--violet);background:#f0e9f3}.answer.correct{background:#e0eee8;border-color:#6b9b83}.answer.wrong{background:#f7e3df;border-color:#cb7669}
+.feedback{margin-top:15px;padding:14px;border-radius:14px;background:#f0e9f3;color:var(--plum);line-height:1.6;font-size:13px}
+.progress{height:7px;background:#e9dfd3;border-radius:99px;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;background:var(--coral);width:0}
+.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:700}
+.sidebar{display:grid;gap:12px;align-content:start}.stat{background:#eee5ef;border-radius:17px;padding:17px}.stat strong{display:block;font:600 30px Fraunces;color:var(--plum)}.stat small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.level{border:1px solid var(--line);border-radius:16px;background:#f8f3ec;padding:16px;text-align:left}.level.selected{border:2px solid var(--violet);background:#f0e9f3}.level strong{display:block;font:600 22px Fraunces}.level small{display:block;color:var(--muted);margin-top:5px}
+.game-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.game-tile{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:21px;text-align:left;min-height:135px}.game-tile b{display:block;font:600 22px Fraunces;margin:8px 0}.game-tile span{font-size:12px;color:var(--muted)}
+.match-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}
+.match-item{background:#f5eee5;border:1px solid var(--line);border-radius:13px;padding:14px;text-align:left;font-weight:700;min-height:66px}.match-item.selected{border:2px solid var(--violet);background:#f0e9f3}.match-item.done{background:#e0eee8;opacity:.6}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:16px}
+.memory-card{aspect-ratio:1;background:var(--plum);color:#f3d9a4;border-radius:13px;font-size:23px;font-weight:800}.memory-card.revealed{background:#eee5ef;color:var(--plum);font-size:12px;padding:8px}.cross-grid{display:grid;grid-template-columns:repeat(7,38px);gap:4px;margin:18px 0}.cross-cell{width:38px;height:38px;text-align:center;text-transform:uppercase;font-weight:800;border:1px solid #cfc1b1;border-radius:7px;background:#fffaf1;color:var(--plum);font-size:17px}.cross-cell.empty{visibility:hidden}
+.word-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.word{background:#efe5ef;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800}
+footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:11px}
+.modal{display:none;position:fixed;inset:0;background:#171322cc;z-index:10;place-items:center;padding:20px}.modal.open{display:grid}.modal img{max-width:94vw;max-height:88vh;border-radius:14px;background:white}
+@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}.quiz-layout,.feature-row{grid-template-columns:1fr}.sidebar{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.shell{padding:0 15px}.topbar{height:64px}.topnav .ghost:nth-child(2){display:none}.hero{padding:30px 25px;min-height:330px}.hero .stamp{right:20px;bottom:20px}.grid,.lesson-grid,.game-grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.levels{grid-template-columns:1fr}.sidebar{grid-template-columns:1fr 1fr}.memory-grid{grid-template-columns:repeat(3,1fr)}.panel{padding:19px}}
+</style>
+</head>
+<body>
+<header class="shell topbar">
+  <div class="brand"><div class="mark">A</div><span>ARTEMICA</span></div>
+  <nav class="topnav"><button class="ghost" onclick="show('home')">Início</button><button class="ghost" onclick="show('study')">Estudar</button><button class="ghost" onclick="show('games')">Jogos</button><button class="ghost" id="soundToggle" onclick="toggleSound()" aria-label="Ativar som">♫ Som</button><input id="volume" type="range" min="0" max="100" value="30" aria-label="Volume" style="width:72px;accent-color:#6a4b83" oninput="setVolume(this.value)"></nav>
+</header>
+<main class="shell">
+<section id="home" class="screen active">
+  <div class="hero">
+    <div class="eyebrow">Laboratório de arte • 6º ano</div>
+    <h1>Conhecer a arte.<br>Descobrir histórias.</h1>
+    <p>Uma jornada pelas manifestações populares brasileiras, pela dança e pela literatura de cordel. Estude no seu ritmo e transforme conhecimento em brincadeira.</p>
+    <div class="stamp">Cultura que vive</div>
+  </div>
+  <div id="homeNotice" class="feedback" hidden style="margin:16px 0"></div>
+  <div class="section-head"><div><div class="eyebrow">Seu espaço de aprendizagem</div><h2>Por onde começamos?</h2><p>Escolha uma experiência para continuar.</p></div></div>
+  <div class="grid">
+    <article class="card"><div class="symbol">✺</div><h3>Central de estudos</h3><p>Leia o resumo, revise conceitos e observe as imagens do livro.</p><button class="action" onclick="show('study')">Abrir estudos ↗</button></article>
+    <article class="card"><div class="symbol">✦</div><h3>Quiz principal</h3><p>Teste o que aprendeu com perguntas, dicas e desafios por nível.</p><button class="action coral" onclick="show('quizSetup')">Entrar na arena ↗</button></article>
+    <article class="card"><div class="symbol">⌘</div><h3>Parque de jogos</h3><p>Combine, memorize, relacione e descubra palavras importantes.</p><button class="action secondary" onclick="show('games')">Ver jogos ↗</button></article>
+  </div>
+  <div class="feature-row">
+    <div class="note"><div class="eyebrow">Dica de estudo</div><h3>Aprender também é observar.</h3><p>Preste atenção aos detalhes das imagens: os personagens, as roupas, os instrumentos, as formas de impressão e os elementos das festas populares ajudam a compreender a cultura.</p></div>
+    <div class="note-dark"><div class="eyebrow" style="color:#f2d59b">Nossa proposta</div><h3>Arte feita de memória.</h3><p>Conhecer tradições é descobrir como diferentes comunidades contam suas histórias e mantêm vivas suas expressões culturais.</p></div>
+  </div>
+</section>
+
+<section id="study" class="screen">
+<button class="back" onclick="show('home')">← Voltar ao início</button>
+<div class="section-head"><div><div class="eyebrow">Caderno de revisão</div><h2>Central de estudos</h2><p>Resumo elaborado a partir das fotografias recebidas.</p></div></div>
+<div class="lesson-grid">
+<div class="panel lesson">
+<h3>1. Danças folclóricas</h3>
+<p>As danças folclóricas são tradições de uma comunidade. Elas preservam a identidade cultural de um grupo por meio de práticas corporais criadas coletivamente, mantidas e repetidas ao longo do tempo. Muitas têm raízes em manifestações populares que surgiram na Idade Média e foram adaptadas durante os séculos.</p>
+<h3>Auto do boi</h3>
+<p>No Norte do Brasil, uma das principais danças ligadas ao Festival de Parintins é o auto do boi. O texto informa que a festa tem registros desde 1840, no Recife, Nordeste, e reúne elementos de culturas indígenas, europeias e africanas.</p>
+<p>Em diferentes estados, a manifestação recebe nomes como <b>boi-bumbá, boi pintadinho, bumba meu boi</b> e <b>cavalo marinho</b>. O boi é construído com madeira e tecidos. Os festejos contam a história de sua morte e ressurreição, seguindo um enredo transmitido entre gerações.</p>\n<h3>Balaio: dança do Rio Grande do Sul</h3>
+<p>O livro também apresenta o <b>balaio</b> como uma dança folclórica tradicional do Rio Grande do Sul. O dançarino é chamado de <b>peão</b> e a dançarina de <b>prenda</b>. Os pares giram em sentido anti-horário e formam uma roda. Entre os movimentos estão:</p>
+<ul><li><b>Sarandeio:</b> a prenda movimenta a saia enquanto marca o ritmo musical nos passos.</li><li><b>Sapateio:</b> os peões sapateiam ao reencontrar a prenda.</li></ul>
+<p>O texto explica que as danças populares brasileiras continuam evoluindo, incorporando novas influências e mantendo vivas as tradições das comunidades.</p>
+<h3>2. Literatura de cordel</h3>
+<p>É uma manifestação cultural popular brasileira desenvolvida principalmente no Nordeste. Deriva do trovadorismo, tradição literária que chegou ao Brasil com os colonizadores portugueses e se caracterizava pela transmissão oral de poemas narrativos.</p>
+<p>O cordel apresenta histórias sobre a vida no Sertão, figuras populares e lendas regionais. Entre seus personagens aparecem <b>João Grilo</b> e <b>Pedro Malasartes</b>, associados à astúcia, esperteza e capacidade de adaptação.</p>
+<h3>Personagens</h3>
+<ul><li><b>João Grilo:</b> personagem inteligente, que enfrenta situações difíceis com humor e também aborda críticas sociais.</li><li><b>Pedro Malasartes:</b> personagem de origem portuguesa que usa sua astúcia para obter vantagem sobre outras pessoas.</li></ul>
+<p>As histórias refletem o cotidiano e as lutas do povo nordestino e de outras regiões do Brasil, podendo representar resistência e busca por justiça.</p>
+<h3>Características do cordel</h3>
+<ul><li>Ritmo cadenciado.</li><li>Rimas que facilitam a memorização e a recitação.</li><li>Temas variados: seca, política, religião, justiça e romance.</li><li>Histórias criativas, muitas vezes com ensinamentos morais ou críticas à sociedade.</li><li>Combinação de palavras e ilustrações, mantendo viva a tradição da oralidade.</li></ul>
+<h3>Xilogravura e oralidade</h3>
+<p>As imagens do material mostram uma reprodução de xilogravura de Stênio Diniz. A página identifica a imagem como uma reprodução de xilogravura de Stênio Diniz. O trecho visível também destaca que a combinação de palavras e ilustrações ajuda a manter a tradição do cordel viva entre gerações.</p>
+<div class="feedback"><b>Para memorizar:</b> cordel = poesia popular + ritmo e rima + histórias + oralidade + ilustrações/xilogravura.</div>
+</div>
+<div>
+<div class="panel"><div class="eyebrow">Imagens do livro</div><h3 style="font-size:24px;margin:8px 0 14px">Observe e relembre</h3>
+<figure><img class="page-image" src="assets/pages/dancas-folcloricas-auto-do-boi.webp" onclick="zoom(this.src)" alt="Página sobre danças folclóricas e auto do boi"><figcaption class="figcap">Danças folclóricas e manifestação do auto do boi.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/literatura-de-cordel-tematicas.webp" onclick="zoom(this.src)" alt="Página de literatura de cordel"><figcaption class="figcap">Literatura de cordel: temáticas e personagens.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/xilogravura-joao-grilo.webp" onclick="zoom(this.src)" alt="Xilogravura de João Grilo"><figcaption class="figcap">Reprodução de xilogravura de Stênio Diniz.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/cordel-poema-maria-bonita.webp" onclick="zoom(this.src)" alt="Trecho de poema de cordel sobre Maria Bonita"><figcaption class="figcap">Exemplo de poema de cordel sobre Maria Bonita.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/cordel-joao-grilo-versos.webp" onclick="zoom(this.src)" alt="Versos populares sobre João Grilo"><figcaption class="figcap">Versos sobre João Grilo, com rimas e ritmo.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/cordel-ritmo-e-temas.webp" onclick="zoom(this.src)" alt="Trecho explicativo sobre ritmo e temas do cordel"><figcaption class="figcap">Ritmo, rimas e variedade de temas no cordel.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/auto-do-boi-imagem-detalhe.webp" onclick="zoom(this.src)" alt="Imagem de apresentação do auto do boi"><figcaption class="figcap">Detalhe visual da manifestação do auto do boi.</figcaption></figure>
+</div>
+<div class="panel" style="margin-top:16px"><div class="eyebrow">Novas páginas recebidas</div><h3 style="font-size:22px;margin:8px 0 12px">Atividade do livro</h3>
+<figure><img class="page-image" src="assets/pages/dancas-folcloricas-pagina-completa.webp" onclick="zoom(this.src)" alt="Página completa de danças folclóricas"><figcaption class="figcap">Página completa sobre danças folclóricas, auto do boi e balaio.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/cordel-pagina-completa.webp" onclick="zoom(this.src)" alt="Página completa de literatura de cordel"><figcaption class="figcap">Página completa sobre literatura de cordel e João Grilo.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/cordel-poemas-maria-bonita-joao-grilo.webp" onclick="zoom(this.src)" alt="Poemas de Maria Bonita e João Grilo"><figcaption class="figcap">Poemas de cordel sobre Maria Bonita e João Grilo.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/questionario-organizando-conhecimento.webp" onclick="zoom(this.src)" alt="Questionário organizando o conhecimento"><figcaption class="figcap">Questionário: Organizando o conhecimento.</figcaption></figure>
+<figure><img class="page-image" src="assets/pages/questionario-testando-ideias.webp" onclick="zoom(this.src)" alt="Questionário testando as ideias"><figcaption class="figcap">Questionário: Testando as ideias.</figcaption></figure>
+</div>
+<div class="panel lesson" style="margin-top:16px"><div class="eyebrow">Gabarito de revisão</div><h3 style="font-size:24px;margin:8px 0">Respostas do questionário enviado</h3>
+<h3>Organizando o conhecimento</h3>
+<p><b>1.</b> A pergunta trata da dança na Idade Média e da posição da Igreja. As páginas explicativas que fundamentam essa resposta não vieram nas fotografias. Para não inventar uma justificativa que talvez não corresponda ao livro, esta resposta fica pendente da página anterior do capítulo.</p>
+<p><b>2.</b> A pergunta sobre a dança carole também depende da explicação da página anterior, que deve informar como a dança era realizada e qual crítica a Igreja fazia. Não vou apresentar uma resposta como certa sem esse trecho.</p>
+<p><b>3. Classificação:</b></p>
+<ul><li>Camponeses em festas e celebrações ao ar livre — <b>danças populares</b>.</li><li>Movimentos livres e espontâneos — <b>danças populares</b>.</li><li>Praticada em castelos e palácios pela nobreza — <b>danças de salão</b>.</li><li>Movimentos refinados e regras — <b>danças de salão</b>.</li><li>Sapateado, batidas de pés e palmas — <b>danças populares</b>.</li><li>Passos sofisticados e maior habilidade técnica — <b>danças de salão</b>.</li></ul>
+<h3>Testando as ideias</h3>
+<p><b>1.</b> A questão pede como as danças medievais eram transmitidas e por que há pouca documentação. A explicação mais provável é a transmissão pela prática, observação e repetição, com pouca anotação escrita das manifestações populares. Porém, a página explicativa sobre esse assunto não foi enviada; confirme a formulação no trecho anterior do capítulo antes de memorizar.</p>
+<p><b>2.</b> Alternativa <b>C</b>: a valsa tem ritmo em três tempos, é caracterizada pelos giros dos dançarinos e foi popular nos salões do século XIX.</p>
+<div class="feedback"><b>Para completar o gabarito:</b> envie a página imediatamente anterior ao exercício, onde o livro explica a dança medieval e a carole. As respostas 3 e Testando as ideias 2 já estão resolvidas com base nas páginas recebidas.</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="quizSetup" class="screen">
+<button class="back" onclick="show('home')">← Voltar ao início</button>
+<div class="panel">
+<div class="eyebrow">Arena de conhecimento</div><h2 style="font-size:36px;margin:8px 0">Escolha seu desafio</h2>
+<p style="color:var(--muted);line-height:1.6">Todas as perguntas da rodada serão apresentadas. A cada nova partida, a ordem muda.</p>
+<div class="levels">
+<button class="level selected" data-level="facil" onclick="selectLevel(this)"><strong>Fácil</strong><small>1 min 30 s por pergunta · 3 vidas</small></button>
+<button class="level" data-level="normal" onclick="selectLevel(this)"><strong>Normal</strong><small>1 min por pergunta · 4 vidas</small></button>
+<button class="level" data-level="dificil" onclick="selectLevel(this)"><strong>Difícil</strong><small>30 s por pergunta · 5 vidas</small></button>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="action coral" onclick="startQuiz()">Começar quiz →</button><button class="action secondary" onclick="show('study')">Revisar antes</button></div>
+<p style="font-size:11px;color:var(--muted);margin-top:14px">O cronômetro e as vidas funcionam no quiz principal. Os outros jogos são atividades de treino sem pressão de tempo.</p>
+</div>
+</section>
+
+<section id="quiz" class="screen">
+<button class="back" onclick="show('home')">← Voltar ao início</button>
+<div class="quiz-layout">
+<div class="panel">
+<div class="meta"><span id="qCount">Pergunta 1</span><span id="qTimer">01:30</span></div><div class="progress"><span id="qProgress"></span></div>
+<div class="kicker" id="qTopic">Cultura popular</div><div class="question" id="qText"></div>
+<div class="answers" id="qAnswers"></div><div id="qFeedback"></div>
+<div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:18px"><button class="action" id="nextBtn" onclick="nextQuestion()" disabled>Próxima →</button><button class="action secondary" onclick="skipQuestion()">Adiar pergunta ↷</button><button class="action secondary" onclick="showHint()">Dica</button></div>
+</div>
+<aside class="sidebar">
+<div class="stat"><small>Vidas</small><strong id="qLives">♥ ♥ ♥</strong></div>
+<div class="stat"><small>Acertos</small><strong id="qScore">0</strong></div>
+<div class="stat"><small>Respondidas</small><strong id="qDone">0</strong></div>
+<button class="action secondary" onclick="show('home')">Sair para início</button>
+</aside>
+</div>
+</section>
+
+<section id="result" class="screen">
+<div class="panel" style="text-align:center;padding:42px">
+<div class="eyebrow">Fim da rodada</div><h2 style="font-size:42px;margin:10px 0">Seu resultado</h2>
+<div id="resultText" style="font-size:17px;color:var(--muted);line-height:1.8"></div>
+<div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px"><button class="action coral" onclick="show('quizSetup')">Jogar novamente</button><button class="action secondary" onclick="show('home')">Voltar ao início</button><button class="action secondary" onclick="show('study')">Rever conteúdo</button></div>
+</div>
+</section>
+
+<section id="games" class="screen">
+<button class="back" onclick="show('home')">← Voltar ao início</button>
+<div class="section-head"><div><div class="eyebrow">Aprender brincando</div><h2>Parque de jogos</h2><p>Pratique os conceitos da matéria de um jeito diferente.</p></div></div>
+<div class="game-grid">
+<button class="game-tile" onclick="startMatch()"><span>01 · associação</span><b>Associe os pares</b><span>Encontre conceitos e definições correspondentes.</span></button>
+<button class="game-tile" onclick="startMemory()"><span>02 · memória</span><b>Jogo da memória</b><span>Vire as cartas e encontre os pares.</span></button>
+<button class="game-tile" onclick="startTrueFalse()"><span>03 · decisão rápida</span><b>Verdadeiro ou falso</b><span>Julgue afirmações sobre a matéria.</span></button>
+<button class="game-tile" onclick="startWordSearch()"><span>04 · vocabulário</span><b>Caça-palavras</b><span>Procure palavras essenciais do conteúdo.</span></button>
+<button class="game-tile" onclick="startFill()"><span>05 · completar</span><b>Complete a ideia</b><span>Escolha a palavra que falta na frase.</span></button>
+<button class="game-tile" onclick="startCrossword()"><span>06 · desafio de letras</span><b>Palavras cruzadas</b><span>Resolva pistas com palavras do conteúdo.</span></button>
+</div>
+</section>
+
+<section id="activity" class="screen">
+<button class="back" onclick="show('games')">← Voltar aos jogos</button>
+<div class="panel" id="activityPanel"></div>
+</section>
+</main>
+<footer><div class="shell" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span>ARTEMICA · laboratório de arte e cultura</span><span>Material de estudo do 6º ano · versão inicial de conteúdo</span></div></footer>
+<div class="modal" id="zoomModal" onclick="this.classList.remove('open')"><img id="zoomImage" alt="Imagem ampliada"></div>
+<script src="app.js"></script>
+</body></html>
