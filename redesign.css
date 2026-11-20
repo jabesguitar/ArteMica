@@ -1,0 +1,42 @@
+
+/* ARTE MICA — redesign lúdico para 6º ano */
+:root{--ink:#20213b;--paper:#f4f6ff;--cream:#fff;--violet:#6755cf;--plum:#29264f;--coral:#ff806d;--gold:#ffc85b;--teal:#39a99b;--muted:#73758d;--line:#e4e6f2;--shadow:0 18px 45px #25245a16}
+body{background:radial-gradient(circle at 8% 8%,#fff7e8 0,transparent 24%),radial-gradient(circle at 96% 20%,#e8f8ff 0,transparent 25%),#f4f6ff}
+.topbar{height:78px;border-bottom:1px solid #e2e4f1}.mark{background:linear-gradient(145deg,#7463df,#3d347f);color:#ffe08b;border-radius:16px}.brand{letter-spacing:.1em}
+.topnav .ghost{color:#565875}.topnav .ghost:hover{background:#ecebff;color:#453b9a}
+.hero-game{position:relative;display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:20px;min-height:390px;margin:24px 0 30px;padding:42px 46px;background:linear-gradient(125deg,#29264f 0%,#463a83 58%,#6250b4 100%);border-radius:34px;box-shadow:0 22px 55px #352c7840}
+.hero-game:before{right:-140px;top:-230px;width:570px;height:570px;border:2px dashed #ffffff25;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff06}.hero-game:after{content:"";display:none}
+.hero-copy{position:relative;z-index:2}.hero-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:99px;background:#ffffff18;border:1px solid #ffffff28;color:#ffe08b;font-size:10px;font-weight:900;letter-spacing:.16em}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#66e0b2;box-shadow:0 0 0 4px #66e0b226}
+.hero-game h1{font-size:clamp(38px,5vw,61px);max-width:570px;margin:18px 0 12px;line-height:1.04;letter-spacing:-.025em}.hero-game h1 em{font-style:normal;color:#ffcf6b}
+.hero-game p{font-size:14px;line-height:1.75;color:#e4e2ff;max-width:510px}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 18px}
+.action-play{background:linear-gradient(135deg,#ff967d,#ff745f);box-shadow:0 8px 20px #ff806d40}.action-play:hover{background:#ff9c84}.hero-actions .secondary{background:#ffffff20;color:#fff;border:1px solid #ffffff35}
+.hero-mini-stats{display:flex;flex-wrap:wrap;gap:15px;color:#d8d5ff;font-size:11px;font-weight:700}
+.hero-gallery{position:relative;min-height:285px;display:flex;align-items:center;justify-content:center}.art-orbit{position:absolute;border:1px dashed #ffffff3d;border-radius:50%;width:270px;height:270px}.orbit-two{width:220px;height:220px;border-style:solid;border-color:#ffffff20}
+.art-card{position:absolute;margin:0;background:#fff;border:5px solid #fff;border-radius:22px;overflow:hidden;box-shadow:0 18px 35px #17133155}.art-card img{display:block;width:100%;height:100%;object-fit:cover}
+.art-card figcaption{position:absolute;left:9px;bottom:9px;background:#29264fe8;color:white;padding:7px 11px;border-radius:99px;font-size:10px;font-weight:900;letter-spacing:.05em}
+.art-boi{width:185px;height:220px;left:8%;top:30px;transform:rotate(-7deg);z-index:2}.art-cordel{width:150px;height:190px;right:5%;bottom:4px;transform:rotate(8deg);z-index:3}
+.floating-star{position:absolute;color:#ffd16b;font-size:36px;z-index:4}.star-a{right:13%;top:4px}.star-b{left:12%;bottom:5px;font-size:26px}
+.floating-note{position:absolute;right:0;top:30px;background:#ffcf6b;color:#30294e;border-radius:13px;padding:10px 13px;font:800 11px 'DM Sans';line-height:1.25;transform:rotate(7deg);z-index:5;box-shadow:0 8px 18px #17133130}
+.hero-bottom-tag{position:absolute;bottom:15px;left:46px;color:#ffffff76;font-size:9px;font-weight:900;letter-spacing:.2em}
+.home-heading{display:flex;align-items:center;justify-content:space-between;margin:34px 0 17px}.home-heading h2{font-size:clamp(25px,3vw,34px);margin:7px 0 5px}.home-heading p{margin:0;color:var(--muted);font-size:13px}.heading-spark{font-size:45px;color:#ffb94d}
+.grid.home-cards{gap:17px}.home-card{position:relative;overflow:hidden;border:1px solid #e7e8f4;border-radius:24px;padding:22px;background:#fff;box-shadow:0 9px 24px #34346c0a}
+.home-card:before{content:"";position:absolute;right:-35px;top:-45px;width:120px;height:120px;border-radius:50%;background:#f0edff}.quiz-card:before{background:#fff0e9}.games-card:before{background:#e8f8f3}
+.card-top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}.home-card .symbol{width:54px;height:54px;border-radius:18px;font-size:26px;background:#eeedff;color:#5746bd;margin:0 0 18px}.quiz-card .symbol{background:#fff0e9}.games-card .symbol{background:#e6f7f2}
+.card-number{font-size:11px;color:#a0a1b8;font-weight:900;letter-spacing:.12em}.home-card h3{font-size:22px;margin-bottom:8px}.home-card p{font-size:13px;min-height:58px;line-height:1.6}.home-card .action{margin-top:5px}
+.action{padding:13px 18px;font-size:12px}.action.secondary{background:#efedff;color:#4c419d}
+.home-bottom{display:grid;grid-template-columns:1.35fr .65fr;gap:14px;margin:20px 0 42px}
+.home-tip,.home-badge{display:flex;align-items:center;gap:14px;border-radius:20px;padding:18px 20px;background:#fff4dc;border:1px solid #ffebc0}
+.tip-icon{font-size:28px}.home-tip b,.home-badge b{font-size:13px;color:#353252}.home-tip p{margin:5px 0 0;font-size:12px;line-height:1.55;color:#777087}
+.home-badge{background:#e7f7f3;border-color:#d2eee7}.home-badge>span{font-size:31px}.home-badge small{display:block;margin-top:4px;color:#71847f;font-size:10px}
+.panel{border-color:#e7e8f4;box-shadow:0 12px 32px #34346c0c}.screen{padding-top:26px}
+.study-art-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.study-art{position:relative;margin:0;overflow:hidden;border-radius:18px;background:#f0efff;border:1px solid #e2e0fa;min-height:180px}
+.study-art img{width:100%;height:220px;object-fit:contain;display:block;padding:10px}.study-art figcaption{padding:10px 14px;background:#fff;font-size:12px;font-weight:800;color:#49466e}
+.game-tile{border-radius:20px;border-color:#e5e6f3;box-shadow:0 8px 20px #34346c0a;transition:transform .18s,box-shadow .18s}.game-tile:hover{transform:translateY(-3px);box-shadow:0 15px 28px #34346c16}
+.level{border-color:#e5e6f3;background:#fafaff}.level.selected{border-color:#7565d8;background:#f0efff}.answer{border-radius:15px}.answer:hover{border-color:#7565d8}.back{color:#6558b4}
+@media(max-width:850px){.hero-game{grid-template-columns:1fr;gap:0;padding:34px}.hero-gallery{min-height:260px}.hero-bottom-tag{left:34px}.home-bottom{grid-template-columns:1fr}.art-boi{left:18%}.art-cordel{right:17%}}
+@media(max-width:600px){.shell{padding:0 14px}.topbar{height:auto;min-height:66px;align-items:center;gap:6px}.brand{font-size:12px;gap:8px}.mark{width:36px;height:36px}.topnav{gap:0}.topnav .ghost{padding:8px 9px;font-size:11px}.topnav .ghost:nth-child(2){display:inline-flex}.topnav #volume{display:none}
+.hero-game{margin:16px 0 22px;padding:26px 21px 34px;border-radius:25px;min-height:0}.hero-game h1{font-size:39px}.hero-game p{font-size:13px}.hero-gallery{min-height:240px;margin-top:4px}
+.art-boi{width:155px;height:185px;left:8%;top:25px}.art-cordel{width:125px;height:160px;right:8%;bottom:2px}.art-orbit{width:225px;height:225px}.orbit-two{width:180px;height:180px}.floating-note{right:1%;top:12px}.hero-bottom-tag{left:21px;bottom:12px;font-size:8px}
+.home-heading{margin-top:28px}.home-heading h2{font-size:25px}.grid.home-cards{grid-template-columns:1fr}.home-card p{min-height:0}.home-bottom{grid-template-columns:1fr}.study-art-row{grid-template-columns:1fr}.panel{padding:18px}}

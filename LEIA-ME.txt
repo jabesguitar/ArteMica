@@ -1,0 +1,39 @@
+ARTEMICA — PACOTE DE REDESIGN DA TELA INICIAL
+
+O que muda:
+- Nova tela inicial com aparência de jogo educativo adequado ao 6º ano.
+- Botão principal para começar a aventura/quiz.
+- Cartões grandes para Estudos, Quiz e Parque de Jogos.
+- Visual responsivo para celular, tablet e computador.
+- A galeria de fotografias de páginas do livro é removida.
+- Na Central de Estudos ficam apenas as duas imagens de conteúdo já existentes no projeto: Auto do Boi e xilogravura de João Grilo.
+- O cache offline é atualizado para não pré-carregar fotografias de páginas e questionários.
+
+O que NÃO muda:
+- app.js, perguntas, alternativas, gabaritos e minijogos.
+- O texto pedagógico da Central de Estudos, exceto a frase de apresentação da galeria.
+- Os arquivos de ilustração já existentes no repositório.
+
+PASSO A PASSO
+
+1. No GitHub, abra https://github.com/jabesguitar/ArteMica
+2. Clique no botão Code > Download ZIP e extraia o repositório para uma pasta do computador.
+3. Extraia este pacote de redesign em outra pasta.
+4. Abra o PowerShell.
+5. Execute o comando abaixo, ajustando os dois caminhos:
+
+   powershell -ExecutionPolicy Bypass -File "C:\CAMINHO\ArteMica-Redesign\aplicar-redesign.ps1" -RepoPath "C:\CAMINHO\ArteMica-main"
+
+6. O script altera somente index.html e sw.js dentro da cópia local do repositório.
+7. Abra index.html no navegador para conferir a tela inicial. As imagens locais só aparecem corretamente quando a pasta assets acompanha o arquivo.
+8. Volte ao GitHub > Add file > Upload files.
+9. Envie SOMENTE os dois arquivos atualizados: index.html e sw.js, substituindo os existentes.
+10. Clique em Commit changes e aguarde o GitHub Pages atualizar.
+
+Depois do commit:
+- Abra https://jabesguitar.github.io/ArteMica/
+- No celular, atualize a página. Se o app já estiver instalado como PWA, feche e abra novamente para renovar o cache.
+- Não envie nem apague a pasta assets. As duas ilustrações usadas continuam nela.
+
+IMPORTANTE:
+Este pacote é uma atualização da interface web do ArteMica. Não é o APK. Primeiro valide a nova tela no GitHub Pages; depois integramos essa versão aprovada à compilação Android.
